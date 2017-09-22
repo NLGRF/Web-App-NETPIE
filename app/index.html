@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport">
+  <!-- <title>appName: Appname</title> -->\
+  <title>Web Control Device</title>
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="../bower_components/bulma/css/bulma.css">
+  <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="container">
+  <section class="section">
+    <div class="container">
+      <h1 class="title">NETPIE.io<i class="fa-li fa fa-spinner fa-spin netpie-connecting"></i></h1>
+      <h2 class="subtitle">
+     <!--   webapp template : LED_Request -->
+          Request State => Device_IOT@SUT Robot
+      </h2>
+      <!--
+      <div class="notification">
+        <p>appName: Appname</p>
+        <p>appId: Appname</p>
+        <p>appKey: gwfq7ENR0n5AQTI</p>
+        <p>appSecret: loLeZBa1Ijy44K2OI31GuIFrw</p>
+      </div>
+      -->
+      <div class="field is-grouped">
+          <div class="control">
+              <button class="publish-get-button button is-info is-outlined">GET</button>
+            </div>
+        <div class="control">
+          <button class="publish-on-button button is-success is-outlined">ON</button>
+        </div>
+        <div class="control">
+          <button class="publish-off-button button-off button is-danger is-outlined">OFF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="message">
+        <div class="message-header">
+          <p class="message-header-text">Message</p>
+        </div>
+        <div class="message-body">
+          <p class="title" id='incoming-messages'> connecting...</p>
+          <!-- <a class="button is-warning is-loading"></a> -->
+        </div>
+      </article>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- build:js scripts/vendor.js -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/moment-timezone/moment-timezone.js"></script>
+<!-- bower:js -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<script src="libs/microgear.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+
+
+<script type="text/javascript">
+  jQuery('document').ready(function ($) {
+    connect_netpie()
+    // var topic = $('#topic-input').val()
+    // var payload = $('#payload-input').val()
+    $('.publish-get-button').click(function () {
+      microgear.publish(Config.topic, 'GET')
+    })
+    $('.publish-on-button').click(function () {
+      microgear.publish(Config.topic, 'ON')
+    })
+    $('.publish-off-button').click(function () {
+      microgear.publish(Config.topic, 'OFF')
+    })
+  })
+</script>
+</body>
+</html>
